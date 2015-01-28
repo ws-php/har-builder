@@ -1,0 +1,80 @@
+body {
+  margin: 20px 0;
+  color: #626B73;
+  font-size: 15px;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+h1 {
+  margin-top: 0;
+}
+
+h1 strong {
+  color: #FF9900;
+  font-weight: 700;
+}
+
+h3 {
+  margin-top: 0;
+  font-size: 12px;
+  font-weight: 700;
+  color: #959595;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.form {
+  padding: 15px;
+  margin: 0 -15px 15px;
+  border: 1px solid #DDDDDD;
+}
+
+.btn-block + .btn-block {
+  margin-top: 0
+}
+
+.pair:nth-of-type(even) {
+  background-color: #f9f9f9;
+}
+
+.pair:last-of-type .btn-danger {
+  display: none;
+}
+
+.pair.has-error:last-of-type .form-control {
+  border-color: #ccc;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+}
+
+.pair:not(:last-of-type) .btn-success {
+  display: none;
+}
+
+
+.toggle-comments .glyphicon {
+  display: none;
+}
+
+.toggle-comments:not(.active) .glyphicon-remove {
+  display: inline-block;
+}
+
+.toggle-comments.active .glyphicon-ok {
+  display: inline-block;
+}
+
+.form.no-comments input[name="comment"] {
+  display: none;
+}
+
+.code {
+  background-color: #f7f7f9;
+  margin: -15px -15px 15px;
+}
+
+.code pre {
+  border: 1px solid #DDDDDD;
+  border-width: 0 1px 1px;
+  border-radius: 0;
+}
