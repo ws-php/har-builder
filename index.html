@@ -46,19 +46,19 @@
   </head>
 
   <body>
-    <body class="container">
-      <div class="form no-comments">
-        <!-- <span class="pull-right">
-          <button class="btn btn-info btn-sm toggle-comments" type="button" data-toggle="button" aria-pressed="false" autocomplete="off">
-            Show Comments
-            <span class="glyphicon glyphicon-ok"></span>
-            <span class="glyphicon glyphicon-remove"></span>
-          </button>
-        </span> -->
-        <h1><strong>HAR</strong> Builder</h1>
+   <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-4 col-sm-12">
+          <div class="form no-comments">
+            <!-- <span class="pull-right">
+              <button class="btn btn-info btn-sm toggle-comments" type="button" data-toggle="button" aria-pressed="false" autocomplete="off">
+                Show Comments
+                <span class="glyphicon glyphicon-ok"></span>
+                <span class="glyphicon glyphicon-remove"></span>
+              </button>
+            </span> -->
+            <h1><strong>HAR</strong> Builder</h1>
 
-        <div class="row">
-          <div class="col-md-6 col-sm-12">
             <div class="panel panel-default">
               <div class="panel-heading">
                 Request
@@ -193,120 +193,25 @@
                 </form>
               </div>
             </div>
-          </div>
 
-          <div class="col-md-6 col-sm-12">
             <div class="panel panel-default">
               <div class="panel-heading">Response</div>
               <div class="panel-body">
+
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="code">
-        <pre><code></code></pre>
+
+        <div class="col-md-8 col-sm-12">
+          <div class="code">
+            <pre><code></code></pre>
+          </div>
+        </div>
       </div>
     </div>
 
-    <script type="text/javascript">
-      var addKeyPair = function (event) {
-        var self = $(this);
-
-        var group = self.parents('.form-group');
-        var form = self.parents('form');
-
-        group.clone().appendTo(form);
-      };
-
-      var processFormData = function (event) {
-        var har = {
-          log: {
-            version : '1.2',
-            creator : {},
-            browser : {},
-            entries: [],
-            comment: ''
-          }
-        };
-
-        var entry = {
-          request: {
-            method: '',
-            url: '',
-            httpVersion: "HTTP/1.1",
-            cookies: [],
-            headers: [],
-            queryString: [],
-            postData: {
-              params: []
-            },
-            headersSize: 0,
-            bodySize: 0,
-            comment: ''
-          }
-        };
-
-        $('.has-error').removeClass('has-error');
-
-        $('.form input:not(:valid)').each(function () {
-          $(this).parents('.form-group').addClass('has-error');
-        });
-
-        [{form: 'creator', parent: har.log}, {form: 'request', parent: entry.request}, {form: 'postData', parent: entry.request.postData}].forEach(function (item) {
-          $('form[name="' + item.form + '"] .form-group:not(.pair) input').each(function () {
-            var self = $(this);
-
-            item.parent[self.attr('name')] = self.val();
-          });
-        });
-
-        ['queryString', 'headers', 'cookies', 'postData'].forEach(function (pair) {
-          var params = [];
-
-          $('form[name="' + pair + '"] .pair input[name="name"]').slice(0, -1).each(function (index, header) {
-            params.push({name: $(header).val()});
-          });
-
-
-          $('form[name="' + pair + '"] .pair input[name="value"]').slice(0, -1).each(function (index, header) {
-            params[index].value = $(header).val();
-          });
-
-          if (pair === 'postData') {
-            entry.request.postData.params = params;
-          } else {
-            entry.request[pair] = params;
-          }
-        });
-
-        har.log.entries.push(entry);
-
-        $('pre code').text(JSON.stringify(har, null, 2));
-
-        //hljs.highlightBlock($('pre code'));
-      };
-
-      $('.toggle-comments').on('click', function (event) {
-        $('.form').toggleClass('no-comments');
-        $('.form  input[name="comment"]').attr('disabled', $(this).hasClass('active'));
-      });
-
-      $('form').on('click', '.form-group.pair:last-of-type .btn-success', addKeyPair);
-
-      $('form').on('focus', '.form-group.pair:last-child input', addKeyPair);
-
-      $('form').on('click', '.form-group.pair .btn-danger', function (event) {
-        $(this).parents('.form-group').remove();
-      });
-
-      $('form').on('change', 'input', processFormData);
-      $('form').on('click', '.btn', processFormData);
-
-      $(document).ready(function () {
-        processFormData();
-      });
-    </script>
+    <script type="text/javascript" src="main.js"></script>
 
     <script type="text/javascript">
     //   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
